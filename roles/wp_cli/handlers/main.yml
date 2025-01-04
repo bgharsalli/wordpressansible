@@ -1,0 +1,6 @@
+# roles/wp_cli/handlers/main.yml
+
+- name: Restart Apache after WordPress installation
+  service:
+    name: apache2
+    state: restarted

@@ -1,0 +1,27 @@
+# INI inventory
+#[wordpress]
+#81.28.97.16 user=node1 user_passwd=node1aqfddt223 mysql_password=my1aqfddt223 domain="81.28.97.16" user_url="http://{{ domain }}/"
+#81.28.97.17 user=node2 user_passwd=node2aqfddt223 mysql_password=my2aqfddt223 domain="81.28.97.17" user_url="http://{{ domain }}/"
+#[wordpress:vars]
+#user_title="'Mon blog'"
+
+# YAML inventory
+wordpress:
+  hosts:
+    192.168.8.135:
+      user: node01
+      user_passwd: wordpress
+      mysql_password: wordpress
+      domain: "192.168.8.135"
+      user_url: "http://{{ domain }}/"
+    192.168.8.136:
+      user: node02
+      user_passwd: wordpress
+      mysql_password: wordpress
+      domain: "192.168.8.136"
+      user_url: "http://{{ domain }}/"
+  vars:
+    user_title: "Mon blog"
+    ansible_python_interpreter: /usr/bin/python3  # Une seule fois dans la section 'vars' de wordpress
+
+

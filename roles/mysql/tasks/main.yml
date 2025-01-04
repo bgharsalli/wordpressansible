@@ -1,0 +1,30 @@
+# roles/mysql/tasks/main.yml
+
+- name: Install MySQL Server
+  apt:
+    name: mysql-server
+    state: present
+    update_cache: yes
+
+- name: Start and enable MySQL service
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+
+- name: Create WordPress Database
+  mysql_db:
+    name: "{{ wp_mysql_db }}"  # Utilisation de la variable wp_mysql_db
+    state: present
+    collation: utf8_general_ci
+    encoding: utf8
+    login_password: "{{ wp_mysql_password }}"  # Mot de passe pour se connecter à MySQL
+
+- name: Create WordPress User
+  mysql_user:
+    name: "{{ wp_mysql_user }}"  # Utilisation de la variable wp_mysql_user
+    password: "{{ wp_mysql_password }}"  # Mot de passe pour l'utilisateur WordPress
+    priv: "{{ wp_mysql_db }}.*:ALL"  # Donne tous les privilèges sur la base de données WordPress
+    host: 'localhost'
+    state: present
+    login_password: "{{ wp_mysql_password }}"  # Mot de passe pour se connecter à MySQL

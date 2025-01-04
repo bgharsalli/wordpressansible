@@ -1,0 +1,14 @@
+---
+- name: install Wordpress
+  hosts: wordpress
+  gather_facts: false
+  remote_user: bilel
+  become: yes
+
+  vars:
+    ansible_python_interpreter: /home/ubuntu/myenv/bin/python3  # Utilisez le chemin vers votre Python dans le venv
+
+  roles:
+    - serveur
+    - mysql
+    - wp_cli

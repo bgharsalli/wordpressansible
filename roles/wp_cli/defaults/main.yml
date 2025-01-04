@@ -1,0 +1,16 @@
+# roles/wp_cli/defaults/main.yml
+
+# URL de téléchargement de WordPress
+wp_download_url: "https://wordpress.org/latest.tar.gz"
+
+# Chemin d'installation de WordPress
+wp_install_dir: "/var/www/html/wordpress"
+
+# Base de données et credentials
+db_name: "wordpress"
+db_user: "wordpress"
+db_password: "wordpress"
+db_host: "localhost"
+
+# Répertoire de téléchargement temporaire
+wp_tmp_dir: "/tmp"

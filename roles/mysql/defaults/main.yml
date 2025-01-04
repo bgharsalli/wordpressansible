@@ -1,0 +1,18 @@
+---
+#wp_mysql_db: wordpress
+#wp_mysql_user: wordpress
+#wp_mysql_password: '{{ mysql_password }}'
+# roles/mysql/tasks/main.yml
+
+# Mot de passe pour l'utilisateur root de MySQL
+mysql_root_password: "rootpassword"  
+
+# Nom de la base de données WordPress
+wp_mysql_db: "wordpress"  
+
+# Utilisateur MySQL pour WordPress
+wp_mysql_user: "wordpress"  
+
+# Mot de passe de l'utilisateur MySQL pour WordPress
+wp_mysql_password: "mysql_password"
+

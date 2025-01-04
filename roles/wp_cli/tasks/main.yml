@@ -1,0 +1,26 @@
+# roles/wp_cli/tasks/main.yml
+
+- name: Download WordPress
+  get_url:
+    url: "{{ wp_download_url }}"
+    dest: "{{ wp_tmp_dir }}/wordpress.tar.gz"
+
+- name: Extract WordPress
+  unarchive:
+    src: "{{ wp_tmp_dir }}/wordpress.tar.gz"
+    dest: "{{ wp_install_dir | dirname }}"
+    creates: "{{ wp_install_dir }}"
+  notify: Restart Apache after WordPress installation
+
+- name: Set ownership and permissions for WordPress files
+  file:
+    path: "{{ wp_install_dir }}"
+    owner: www-data
+    group: www-data
+    recurse: yes
+
+- name: Configure wp-config.php for WordPress
+  template:
+    src: "wp-config.php.j2"
+    dest: "{{ wp_install_dir }}/wp-config.php"
+  notify: Restart Apache after WordPress installation
